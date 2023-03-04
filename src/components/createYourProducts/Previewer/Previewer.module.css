@@ -1,0 +1,6 @@
+.previewerMainImage {
+  width: 300px;
+  height: 350px;
+  object-fit: cover;
+  object-position: top;
+}
