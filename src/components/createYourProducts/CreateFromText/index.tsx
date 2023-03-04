@@ -1,11 +1,13 @@
+import { UpdatableInput } from '@/components/forms'
 import { useCreateProductsContext } from '@/shared/providers'
 import React, { FC } from 'react'
 import { useState } from 'react'
 
 export const CreateFromText: FC = () => {
-  const { currentResource } = useCreateProductsContext()
+  const { currentResource, currentSentence } = useCreateProductsContext()
 
-  const [sentences, setSentences] = useState<string[]>([''])
+  const [sentences, setSentences] = useState<string[]>([])
+  const [currentSentenceId, setCurrentSentenceId] = useState(0)
 
   return (
     <div
@@ -22,18 +24,32 @@ export const CreateFromText: FC = () => {
           gap: '8px',
         }}
       >
-        {sentences.map((sentence, index) => (
-          <input
-            key={sentence}
-            type="text"
-            placeholder="Escribe tu frase"
+        {sentences.map((sentence, indexSentence) => (
+          <UpdatableInput
+            isCurrent={currentSentenceId === indexSentence}
             value={sentence}
-            onChange={(e) => {
+            key={sentence}
+            placeholder="Escribe tu frase"
+            onClick={() => {
+              setCurrentSentenceId(indexSentence)
+              if (sentence) {
+                currentSentence.set(sentence)
+              }
+            }}
+            onChange={(value) => {
               setSentences((curr) => {
                 const newSentences = curr.map((sentence) => sentence)
-                newSentences[index] = e.target.value
+                newSentences[indexSentence] = value
                 return newSentences
               })
+              if (value) {
+                currentSentence.set(value)
+              }
+            }}
+            onRemove={() => {
+              setSentences((curr) =>
+                curr.filter((_, index) => index !== indexSentence)
+              )
             }}
           />
         ))}
@@ -50,7 +66,7 @@ export const CreateFromText: FC = () => {
           })
         }}
       >
-        Nueva frase
+        Agregar frase
       </button>
     </div>
   )
