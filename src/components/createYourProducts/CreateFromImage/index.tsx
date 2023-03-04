@@ -3,6 +3,7 @@ import React, { FC } from 'react'
 import ImageUploading, { ImageListType } from 'react-images-uploading'
 import styles from './CreateFromImage.module.css'
 import { useCreateProductsContext } from '@/shared/providers'
+import { UploadImageModal } from '../UploadImageModal'
 
 export const CreateFromImage: FC = () => {
   const { currentResource } = useCreateProductsContext()

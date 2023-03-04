@@ -5,13 +5,14 @@ import { defaultImages, defaultText } from '../constants'
 
 type ContextState<StateType> = {
   value: StateType
-  set: (value: StateType) => void
+  set: Dispatch<SetStateAction<StateType>>
 }
 
 interface ICreateProductsContext {
   currentResource: ContextState<PossibleProductResource>
   currentImageName: ContextState<string>
   currentSentence: ContextState<string>
+  uploadModalIsOpen: ContextState<boolean>
 }
 
 const CreateProductsContext = createContext({} as ICreateProductsContext)
@@ -27,6 +28,7 @@ export const CreateProductsContextProvider: FC<PropsWithChildren> = ({
   const [currentImageName, setCurrentImageName] = useState(
     defaultImages.mainProduct
   )
+  const [uploadModalIsOpen, setUploadModalIsOpen] = useState(true)
 
   const { Provider } = CreateProductsContext
   const context: ICreateProductsContext = {
@@ -41,6 +43,10 @@ export const CreateProductsContextProvider: FC<PropsWithChildren> = ({
     currentSentence: {
       value: currentSentence,
       set: (currentSentence) => setCurrentSentence(currentSentence),
+    },
+    uploadModalIsOpen: {
+      value: uploadModalIsOpen,
+      set: setUploadModalIsOpen,
     },
   }
   return <Provider value={context}>{children}</Provider>

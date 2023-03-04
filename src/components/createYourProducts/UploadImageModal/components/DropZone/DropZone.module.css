@@ -1,0 +1,38 @@
+.uploadImageModalDropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: var(--fe-colors-secondary);
+  border-style: dashed;
+  background-color: var(--fe-colors-white-50);
+  outline: none;
+  transition: border .24s ease-in-out;
+  height: 100%;
+}
+
+.uploadImageModalDropzoneTitle {
+  font-size: 40px;
+  color: var(--fe-colors-primary);
+}
+
+.uploadImageModalDropzoneDescription {
+  color: var(--fe-colors-secondary);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.uploadImageModalDropzoneButton {
+  background-color: var(--fe-colors-emphasis);
+  color: var(--fe-colors-white);
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 30px;
+  font-weight: 700;
+}
