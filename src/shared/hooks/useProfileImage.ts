@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { getUrlImage } from '../utils'
+import { defaultImages } from '../constants'
 
 type GetUrlProfileImageParams = {
   effect?: string
@@ -21,8 +22,7 @@ const getUrlProfileImage = ({
     effect,
   ].filter((effect) => !!effect)
   return getUrlImage({
-    directory: 'v1677729390',
-    imageName: imageName ?? 'vtvp1zodhn6ydgowmxeo.png',
+    imageName: imageName ?? defaultImages.profile,
     effects: allEffects,
   })
 }
@@ -35,7 +35,7 @@ type PreviewProfileImageType = {
 
 export const useProfileImage = () => {
   const [src, setSrc] = useState(getUrlProfileImage({}))
-  const [imageName, setImageName] = useState('vtvp1zodhn6ydgowmxeo.png')
+  const [imageName, setImageName] = useState(defaultImages.profile)
   const [imageEffect, setImageEffect] = useState('')
   const [previewProfileImages, setPreviewProfileImages] = useState<
     PreviewProfileImageType[]
@@ -68,6 +68,7 @@ export const useProfileImage = () => {
         imageName,
       })
     )
+    console.log({ imageName, imageEffect })
   }, [imageName, imageEffect])
 
   return {

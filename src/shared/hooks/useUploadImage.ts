@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { ImageListType } from 'react-images-uploading'
 import { UploadedImageRensponse } from '../models'
+import { config } from '../constants'
 
 const URL_FOR_UPLOADING =
   'http://api.cloudinary.com/v1_1/dy7myxpvn/image/upload'
@@ -32,7 +33,7 @@ export const useUploadImage = () => {
       return new Promise<IUploadedImageData>((resolve) => {
         const imageForUploading = new FormData()
         imageForUploading.append('file', image.file as Blob)
-        imageForUploading.append('upload_preset', 'njep19mg')
+        imageForUploading.append('upload_preset', config.uploadPreset)
         imageForUploading.append('timestamp', `${Date.now() / 1000}`)
         imageForUploading.append('api_key', '563122958277756')
 
