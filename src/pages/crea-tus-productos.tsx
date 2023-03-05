@@ -1,9 +1,4 @@
-import { CreateFromImage, CreateFromText } from '@/components'
-import {
-  Actions,
-  Previewer,
-  UploadImageModal,
-} from '@/components/createYourProducts'
+import { CreateYourProducts } from '@/components/createYourProducts'
 import { CreateProductsContextProvider } from '@/shared/providers'
 import Head from 'next/head'
 
@@ -17,24 +12,7 @@ export default function AddYourProducts() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <CreateProductsContextProvider>
-        <UploadImageModal />
-        <div className="App">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '16px',
-            }}
-          >
-            <div>
-              <Actions />
-              <CreateFromImage />
-              <CreateFromText />
-            </div>
-            <div>{false && <Previewer />}</div>
-          </div>
-          <button>Crea tu ecommerce!</button>
-        </div>
+        <CreateYourProducts />
       </CreateProductsContextProvider>
     </>
   )

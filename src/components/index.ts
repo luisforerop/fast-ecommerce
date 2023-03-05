@@ -1,1 +1,1 @@
-export * from './createYourProducts'
+export * from './createYourProducts/components'
