@@ -7,12 +7,12 @@
   padding: 20px;
   border-width: 2px;
   border-radius: 2px;
-  border-color: var(--fe-colors-secondary);
-  border-style: dashed;
-  background-color: var(--fe-colors-white-50);
-  outline: none;
-  transition: border .24s ease-in-out;
+  background-color: var(--fe-colors-white-200);
   height: 100%;
+  border-radius: 8px;
+  box-shadow: inset 5px 5px 6px var(--fe-colors-gray-50),
+    inset -5px -5px 6px var(--fe-colors-white);
+
 }
 
 .uploadImageModalDropzoneTitle {
@@ -35,4 +35,6 @@
   font-size: 16px;
   border-radius: 30px;
   font-weight: 700;
+  box-shadow: 5px 5px 6px var(--fe-colors-gray-50),
+    -5px -5px 6px #ffffff;
 }

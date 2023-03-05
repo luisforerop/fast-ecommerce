@@ -1,16 +1,19 @@
-import { FC, PropsWithChildren } from 'react'
+import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from 'react'
 import styles from './Card.module.css'
 
-type CardProps = {
+interface CardProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
   customClass?: string
 }
 
 export const Card: FC<PropsWithChildren<CardProps>> = ({
   children,
   customClass,
+  ...props
 }) => {
   return (
     <article
+      {...props}
       className={`${styles.uploadModalImageCardContainer}${
         customClass ? ` ${customClass}` : ''
       }`}

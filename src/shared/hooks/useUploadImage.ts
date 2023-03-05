@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { ImageListType } from 'react-images-uploading'
+import { ImageListType, ImageType } from 'react-images-uploading'
 import { UploadedImageRensponse } from '../models'
 import { config } from '../constants'
 
@@ -7,15 +7,19 @@ const URL_FOR_UPLOADING =
   'http://api.cloudinary.com/v1_1/dy7myxpvn/image/upload'
 
 interface IUploadedImageData {
+  rawImage?: ImageType
   data?: UploadedImageRensponse
   status: 'uploaded' | 'error'
 }
 
 export const useUploadImage = () => {
   const [images, setImages] = useState<ImageListType>([])
-  const [uploadedImages, setUploadedImages] = useState<IUploadedImageData[]>([])
+  const [uploadedImages, setUploadedImages] = useState<
+    UploadedImageRensponse[]
+  >([])
   const [uploading, setUploading] = useState(false)
   // Implementar una estrucutura de errores en la respuesta como la que tenemos en mkp
+  // Implementar mensaje de error en caso de que las imagenes no se hayan cargado correctamente
 
   const onChange = (imageList: ImageListType) => {
     setImages(imageList)
@@ -51,12 +55,16 @@ export const useUploadImage = () => {
               data,
             })
           })
-          .catch((_e: Error) => resolve({ status: 'error' }))
+          .catch((_e: Error) => resolve({ status: 'error', rawImage: image }))
       })
     })
 
     Promise.all(sendingImage).then((responsesFromApi) => {
-      setUploadedImages(responsesFromApi)
+      const imagesUploadedCorrectly = responsesFromApi
+        .filter(({ status, data }) => status === 'uploaded' && !!data)
+        .map(({ data }) => data!)
+
+      setUploadedImages(imagesUploadedCorrectly)
     })
   }
 

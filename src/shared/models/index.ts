@@ -8,7 +8,7 @@ export type UploadedImageRensponse = {
   height: number
   format: string
   resource_type: string
-  created_at: Date
+  created_at: string
   tags: any[]
   bytes: number
   type: string

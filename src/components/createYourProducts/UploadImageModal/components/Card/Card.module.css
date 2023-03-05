@@ -1,10 +1,11 @@
 .uploadModalImageCardContainer {
-  border-radius: 9px;
+  border-radius: 8px;
   background: #f7f7f7;
-  box-shadow: 5px 5px 6px #ebebeb,
+  box-shadow: 5px 5px 6px var(--fe-colors-gray-50),
     -5px -5px 6px #ffffff;
   position: relative;
   height: 320px;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
 }

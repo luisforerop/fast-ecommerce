@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import styles from './DropZone.module.css'
+import { useCreateProductsContext } from '@/shared/providers'
 
 type DropZoneProps = {
   isDragging?: boolean
@@ -14,6 +15,7 @@ type DropZoneProps = {
 }
 
 export const DropZone: FC<DropZoneProps> = ({ dragProps, onImageUpload }) => {
+  const { availableUploads } = useCreateProductsContext()
   return (
     <div className={styles.uploadImageModalDropzone} {...dragProps}>
       <h2 className={styles.uploadImageModalDropzoneTitle}>
@@ -27,7 +29,7 @@ export const DropZone: FC<DropZoneProps> = ({ dragProps, onImageUpload }) => {
         Sube una imagen
       </button>
       <p className={styles.uploadImageModalDropzoneDescription}>
-        O arrastra hasta 5 para comenzar
+        {`O arrastra hasta ${availableUploads} para comenzar`}
       </p>
     </div>
   )

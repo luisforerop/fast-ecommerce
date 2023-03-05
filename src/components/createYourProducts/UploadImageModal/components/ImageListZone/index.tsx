@@ -54,10 +54,12 @@ export const ImageListZone: FC<ImageListZoneProps> = ({
             {...dragProps}
           />
         )}
-
         <ActionButton
           Icon={Upload}
-          onClick={onUpload}
+          onClick={() => {
+            onUpload()
+            onImageRemoveAll()
+          }}
           title="Carga tus imágenes"
           message="Enviemos las imagenes a la nube y veamos tus productos"
         />

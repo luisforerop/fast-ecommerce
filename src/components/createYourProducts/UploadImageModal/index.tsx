@@ -1,16 +1,25 @@
-import React, { Fragment } from 'react'
-import styles from './UploadImageModal.module.css'
-import { useState } from 'react'
 import { useUploadImage } from '@/shared/hooks'
-import ImageUploading from 'react-images-uploading'
-import { DropZone } from './components/DropZone'
-import { ImageListZone } from './components/ImageListZone'
-import { Close } from '@/components/icons'
 import { useCreateProductsContext } from '@/shared/providers'
+import { useEffect } from 'react'
+import styles from './UploadImageModal.module.css'
+import { CloseModalButton, ModalContent } from './components'
+import { Loader } from './components/Loader'
 
 export const UploadImageModal = () => {
-  const { uploadModalIsOpen } = useCreateProductsContext()
-  const { onChange, onUpload, images } = useUploadImage()
+  const { uploadModalIsOpen, uploadedImages, availableUploads } =
+    useCreateProductsContext()
+  const uploadImagesState = useUploadImage()
+
+  useEffect(() => {
+    if (uploadImagesState.uploadedImages.length > 0) {
+      uploadedImages.set((curr) => [
+        ...curr,
+        ...uploadImagesState.uploadedImages,
+      ])
+      uploadImagesState.onChange([])
+      uploadModalIsOpen.set(false)
+    }
+  }, [uploadImagesState.uploadedImages])
 
   return (
     <div
@@ -20,57 +29,9 @@ export const UploadImageModal = () => {
       className={styles.uploadImageModalMainConatiner}
     >
       <div className={styles.uploadImageModalConatiner}>
-        <button
-          className={styles.uploadImageModalClose}
-          onClick={() => {
-            uploadModalIsOpen.set(false)
-          }}
-        >
-          <Close size={25} />
-        </button>
-
-        <div className={styles.uploadImageModalContent}>
-          <ImageUploading
-            multiple
-            value={images}
-            onChange={onChange}
-            maxNumber={5}
-            dataURLKey="data_url"
-          >
-            {({
-              imageList,
-              onImageUpload,
-              onImageRemoveAll,
-              onImageRemove,
-              isDragging,
-              dragProps,
-            }) => (
-              // write your building UI
-              <Fragment>
-                {imageList.length ? null : (
-                  <DropZone
-                    dragProps={dragProps}
-                    onImageUpload={onImageUpload}
-                    isDragging={isDragging}
-                  />
-                )}
-                {!imageList.length ? null : (
-                  <ImageListZone
-                    {...{
-                      dragProps,
-                      imageList,
-                      onImageRemove,
-                      onImageRemoveAll,
-                      onImageUpload,
-                      onUpload,
-                      isDragging,
-                    }}
-                  />
-                )}
-              </Fragment>
-            )}
-          </ImageUploading>
-        </div>
+        <CloseModalButton />
+        <Loader loading={uploadImagesState.uploading} />
+        <ModalContent {...uploadImagesState} />
       </div>
     </div>
   )
