@@ -7,27 +7,36 @@ import styles from './ActionButton.module.css'
 interface ActionButtonProps extends LiteralObject {
   onClick: () => void
   Icon: FC<IconProps>
+  iconSize?: number
   title: string
-  message: string
+  message?: string
+  customClasses?: {
+    card?: string
+    button?: string
+  }
 }
 
 export const ActionButton: FC<ActionButtonProps> = ({
   Icon,
+  iconSize,
   message,
   onClick,
   title,
+  customClasses,
   ...otherProps
 }) => {
   return (
-    <Card>
+    <Card customClass={customClasses?.card}>
       <button
-        className={styles.uploadImageModalButton}
+        className={`${styles.uploadImageModalButton} ${
+          customClasses?.button ? customClasses.button : ''
+        }`}
         onClick={onClick}
         {...otherProps}
       >
-        <Icon size={60} />
+        <Icon size={iconSize ?? 60} />
         <span className={styles.uploadImageModalButtonTitle}>{title}</span>
-        <span>{message}</span>
+        {message && <span>{message}</span>}
       </button>
     </Card>
   )
