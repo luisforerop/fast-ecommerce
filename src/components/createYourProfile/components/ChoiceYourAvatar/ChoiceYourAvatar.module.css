@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.title {
+  color: var(--fe-colors-primary);
+}
+
+.styledAvatarContainer {
+  display: flex;
+  gap: 24px;
+}
+
+.styledAvatar {
+  height: 80px;
+  width: 80px;
+  border-radius: 8px;
+  display: flex;
+  box-shadow: 8px 8px 16px #dedede,
+    -8px -8px 16px #ffffff;
+}
+
+.styledAvatarImage {
+  height: 80px;
+  width: 80px;
+  object-fit: contain;
+}
+
+.selectAvatarStyle {
+  box-shadow: inset 5px 5px 17px #dedede,
+    inset -5px -5px 17px #ffffff;
+}

@@ -1,0 +1,50 @@
+.container {
+  margin: auto;
+  width: 90%;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 32px;
+  color: var(--fe-colors-primary);
+}
+
+.header {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.footerAd {
+  color: var(--fe-colors-red-200);
+  font-size: 14px;
+}
+
+.disabledNextStepButton,
+.nextStepButton {
+  width: fit-content;
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nextStepButton {
+  background-color: var(--fe-colors-emphasis);
+  color: var(--fe-colors-white);
+}
+
+.disabledNextStepButton {
+  background-color: var(--fe-colors-gray-50);
+  color: var(--fe-colors-black-100);
+}

@@ -1,0 +1,67 @@
+.container {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 16px;
+
+  box-shadow: 8px 8px 16px #dedede,
+    -8px -8px 16px #ffffff;
+}
+
+.imageContainer {
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid #DBDBDB;
+  display: flex;
+}
+
+.image {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.addContainer {
+  position: absolute;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fe-colors-white-50);
+
+}
+
+.imageContainer:hover~.addContainer,
+.addContainer:hover {
+  top: 0px;
+  left: 0px;
+}
+
+.button {
+  position: absolute;
+  z-index: 10;
+  bottom: 15px;
+  right: 15px;
+  background-color: transparent;
+  border: none;
+  color: var(--fe-colors-primary);
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

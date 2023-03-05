@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { getUrlImage } from '../utils'
-import { defaultImages } from '../constants'
+import { getUrlImage } from '@/shared/utils'
+import { defaultImages } from '@/shared/constants'
 
 type GetUrlProfileImageParams = {
   effect?: string
@@ -9,7 +9,7 @@ type GetUrlProfileImageParams = {
   typeImage?: 'profile' | 'preview'
 }
 
-const effects = ['e_cartoonify', 'e_pixelate:5', 'e_sepia', 'e_art:audrey']
+const effects = ['', 'e_cartoonify', 'e_pixelate:5', 'e_sepia', 'e_art:audrey']
 
 const getUrlProfileImage = ({
   imageName,
@@ -17,8 +17,8 @@ const getUrlProfileImage = ({
   typeImage,
 }: GetUrlProfileImageParams) => {
   const allEffects = [
-    typeImage === 'preview' ? 'c_scale,w_75' : 'c_scale,w_150',
-    'r_150',
+    // typeImage === 'preview' ? 'c_scale,w_75' : 'c_scale,w_150',
+    'c_scale,w_150',
     effect,
   ].filter((effect) => !!effect)
   return getUrlImage({
@@ -27,7 +27,7 @@ const getUrlProfileImage = ({
   })
 }
 
-type PreviewProfileImageType = {
+export type PreviewProfileImageType = {
   onClick: () => void
   src: string
   effect: string
@@ -68,7 +68,6 @@ export const useProfileImage = () => {
         imageName,
       })
     )
-    console.log({ imageName, imageEffect })
   }, [imageName, imageEffect])
 
   return {

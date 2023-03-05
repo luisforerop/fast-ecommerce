@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from 'react'
+
 export type UploadedImageRensponse = {
   asset_id: string
   public_id: string
@@ -19,6 +21,21 @@ export type UploadedImageRensponse = {
   folder: string
   access_mode: string
   original_filename: string
+}
+
+export interface IUserData {
+  userName: string
+  description: string
+  website: {
+    link: string
+    description?: string
+  }
+  profileImage: string
+}
+
+export type ContextState<StateType> = {
+  value: StateType
+  set: Dispatch<SetStateAction<StateType>>
 }
 
 export type LiteralObject<ValueType = any> = { [key: string]: ValueType }

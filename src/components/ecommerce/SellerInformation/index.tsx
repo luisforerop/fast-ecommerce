@@ -6,7 +6,7 @@ export const SellerInformation = () => {
   const {
     userName,
     description,
-    imageProfile,
+    profileImage: imageProfile,
     website,
     products: productImages,
     followers,

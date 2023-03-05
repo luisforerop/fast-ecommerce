@@ -1,16 +1,9 @@
 import type { FC, PropsWithChildren } from 'react'
 import { createContext, useContext } from 'react'
-import { useGetUserProfile } from '../hooks/useGetUserProfile'
-import { IProductsInfo } from '../models'
+import { useGetUserProfile } from '@/shared/hooks'
+import type { IProductsInfo, IUserData } from '@/shared/models'
 
-export interface IEcommerceContext {
-  userName: string
-  description: string
-  website: {
-    link: string
-    description?: string
-  }
-  imageProfile: string
+export interface IEcommerceContext extends IUserData {
   products: IProductsInfo[]
   followers: number
 }

@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 600px;
+}
+
+.input {
+  padding: 8px 16px;
+  border: none;
+  border: 2px solid var(--fe-colors-white);
+  color: var(--fe-colors-black-200);
+}
+
+.input:focus {
+  outline: none;
+  border: 2px solid var(--fe-colors-gray-50);
+  border-radius: 8px;
+}
+
+.userName {
+  font-size: 48px;
+  line-height: 48px;
+  font-weight: 700;
+}
+
+.description {
+  font-size: 24px;
+}
+
+.websiteLink {
+  font-size: 16px;
+  color: var(--fe-colors-link);
+}
+
+.websiteDescription {
+  font-size: 16px;
+}

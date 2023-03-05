@@ -6,13 +6,12 @@ import {
   useState,
 } from 'react'
 import type { FC, Dispatch, SetStateAction } from 'react'
-import { PossibleProductResource, UploadedImageRensponse } from '../models'
+import {
+  ContextState,
+  PossibleProductResource,
+  UploadedImageRensponse,
+} from '../models'
 import { defaultImages, defaultText } from '../constants'
-
-type ContextState<StateType> = {
-  value: StateType
-  set: Dispatch<SetStateAction<StateType>>
-}
 
 const uploadedImageFOrTest: UploadedImageRensponse[] = [
   {

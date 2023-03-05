@@ -20,7 +20,7 @@ export const useGetUserProfile = (): IEcommerceContext => {
   return {
     userName: name,
     description: 'Todo es posible si mueves las manitos as a flash',
-    imageProfile:
+    profileImage:
       'https://holatelcel.com/wp-content/uploads/2020/09/instagram-foto-de-perfil-4.jpg',
     website: {
       link: 'https://mr-components.com',
