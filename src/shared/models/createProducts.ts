@@ -28,3 +28,10 @@ interface ProductFromSentenceParams extends BasicProductImageParams {
 export type ProductParams = ProductFromImageParams | ProductFromSentenceParams
 
 export type GetSpecificProductType = (params: ProductParams) => string
+
+export interface IProductsInfo {
+  name: string
+  src: string
+  price: number
+  id: string
+}
