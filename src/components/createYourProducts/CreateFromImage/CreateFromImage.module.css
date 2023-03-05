@@ -1,15 +1,42 @@
-.dropzone {
-  flex: 1;
+.createFromImageContainer {
+  padding: 36px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  border: 1px solid;
+  width: 50vw;
+}
+
+.createFromImageContainerSelected {
+  box-shadow: inset 5px 5px 6px var(--fe-colors-gray-50),
+    inset -5px -5px 6px #ffffff;
+}
+
+.createFromImageListContainer {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+
+
+.createFromImageButton {
   display: flex;
   flex-direction: column;
+  gap: 16px;
   align-items: center;
-  padding: 20px;
-  border-width: 2px;
-  border-radius: 2px;
-  border-color: #eeeeee;
-  border-style: dashed;
-  background-color: #fafafa;
-  color: #bdbdbd;
-  outline: none;
-  transition: border .24s ease-in-out;
+  justify-content: center;
+  margin: 16px;
+  border: none;
+  background-color: transparent;
+  height: 100%;
+  font-size: 16px;
+  color: var(--fe-colors-black-100);
+}
+
+.createFromImageButtonTitle {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
 }

@@ -1,63 +1,67 @@
-import { useUploadImage } from '@/shared/hooks'
-import React, { FC } from 'react'
-import ImageUploading, { ImageListType } from 'react-images-uploading'
-import styles from './CreateFromImage.module.css'
+import { Image } from '@/components/icons'
 import { useCreateProductsContext } from '@/shared/providers'
-import { UploadImageModal } from '../UploadImageModal'
+import { FC, useState } from 'react'
+import { Card } from '../UploadImageModal/components'
+import styles from './CreateFromImage.module.css'
 
 export const CreateFromImage: FC = () => {
-  const { currentResource } = useCreateProductsContext()
-  const { onChange, onUpload, images } = useUploadImage()
+  const {
+    currentResource,
+    uploadedImages,
+    availableUploads,
+    uploadModalIsOpen,
+    currentImageName,
+  } = useCreateProductsContext()
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   return (
     <div
-      className="App"
+      className={styles.createFromImageContainer}
       style={{
-        display: currentResource.value === 'FROM_IMAGE' ? 'flex' : 'none',
-        flexDirection: 'column',
-        gap: '16px',
+        display: currentResource.value === 'FROM_IMAGE' ? 'grid' : 'none',
       }}
     >
-      <ImageUploading
-        multiple
-        value={images}
-        onChange={onChange}
-        maxNumber={5}
-        dataURLKey="data_url"
-      >
-        {({
-          imageList,
-          onImageUpload,
-          onImageRemoveAll,
-          onImageUpdate,
-          onImageRemove,
-          isDragging,
-          dragProps,
-        }) => (
-          // write your building UI
-          <div className={styles.dropzone} {...dragProps}>
-            <button
-              style={isDragging ? { color: 'red' } : undefined}
-              onClick={onImageUpload}
-              {...dragProps}
-            >
-              Click or Drop here
-            </button>
-
-            <button onClick={onImageRemoveAll}>Remove all images</button>
-            {imageList.map((image, index) => (
-              <div key={index} className="image-item">
-                <img src={image['data_url']} alt="" width="100" />
-                <div className="image-item__btn-wrapper">
-                  <button onClick={() => onImageUpdate(index)}>Update</button>
-                  <button onClick={() => onImageRemove(index)}>Remove</button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </ImageUploading>
-      <button onClick={onUpload}>send image</button>
+      {uploadedImages.value.map(({ url, public_id, asset_id }, index) => (
+        <Card
+          key={asset_id}
+          customClass={`${styles.createFromImageListContainer} ${
+            currentImageIndex === index
+              ? styles.createFromImageContainerSelected
+              : ''
+          }`}
+          onClick={() => {
+            setCurrentImageIndex(index)
+            currentImageName.set(public_id)
+          }}
+        >
+          <img
+            src={url}
+            alt=""
+            style={{
+              maxHeight: '100%',
+              maxWidth: '100%',
+            }}
+          />
+        </Card>
+      ))}
+      <Card customClass={styles.createFromImageListContainer}>
+        <button
+          className={styles.createFromImageButton}
+          onClick={() => {
+            uploadModalIsOpen.set(true)
+          }}
+        >
+          <Image size={30} />
+          <span className={styles.createFromImageButtonTitle}>
+            Sube imágenes
+          </span>
+          <span>
+            {uploadedImages.value.length === 5
+              ? 'Puedes cargar hasta 5'
+              : `Aún puedes subir ${availableUploads} más`}
+          </span>
+        </button>
+      </Card>
     </div>
   )
 }
