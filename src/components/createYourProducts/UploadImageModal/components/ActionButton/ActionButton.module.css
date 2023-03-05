@@ -1,0 +1,19 @@
+.uploadImageModalButton {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  border: none;
+  background-color: transparent;
+  height: 100%;
+  font-size: 18px;
+  color: var(--fe-colors-black-100);
+}
+
+.uploadImageModalButtonTitle {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+}

@@ -4,3 +4,6 @@ export type IconProps = {
 }
 
 export * from './Close'
+export * from './Image'
+export * from './Trash'
+export * from './Upload'

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import styles from './DropZone.module.css'
 
 type DropZoneProps = {
@@ -17,7 +17,7 @@ export const DropZone: FC<DropZoneProps> = ({ dragProps, onImageUpload }) => {
   return (
     <div className={styles.uploadImageModalDropzone} {...dragProps}>
       <h2 className={styles.uploadImageModalDropzoneTitle}>
-        Sube imágenes para crear tus productos!
+        Carga imágenes para crear tus productos!
       </h2>
       <button
         className={styles.uploadImageModalDropzoneButton}

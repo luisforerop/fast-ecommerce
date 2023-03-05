@@ -1,5 +1,8 @@
-import React, { FC } from 'react'
+import { Image, Trash, Upload } from '@/components/icons'
+import { FC } from 'react'
 import type { ImageListType } from 'react-images-uploading'
+import { ActionButton } from '../ActionButton'
+import { ImageCard } from '../ImageCard'
 import styles from './ImageListZone.module.css'
 
 type ImageListZoneProps = {
@@ -18,55 +21,53 @@ type ImageListZoneProps = {
   }
 }
 
+const getMessage = (quantity: number) => {
+  const imageText = quantity === 1 ? 'imagen' : 'imágenes'
+  return `Aún tienes espacio para ${5 - quantity} ${imageText}`
+}
+
 export const ImageListZone: FC<ImageListZoneProps> = ({
   dragProps,
+  imageList,
   onImageRemoveAll,
   onImageUpload,
-  isDragging,
-  imageList,
   onImageRemove,
   onUpload,
 }) => {
   return (
-    <div>
-      <button
-        style={isDragging ? { color: 'red' } : undefined}
-        onClick={onImageUpload}
-        {...dragProps}
-      >
-        Click or Drop here
-      </button>
-      <button onClick={onImageRemoveAll}>Remove all images</button>
+    <div className={styles.uploadImageModalImageListZoneContainer}>
       <div className={styles.uploadImageModalImagesContainer}>
         {imageList.map((image, index) => (
-          <div key={index} className="image-item">
-            <div
-              style={{
-                width: '150px',
-                height: '220px',
-                display: 'flex',
-                overflow: 'hidden',
-                borderRadius: '8px',
-                backgroundColor: 'rgba(0,0,0,0.2)',
-              }}
-            >
-              <img
-                src={image['data_url']}
-                alt=""
-                style={{
-                  height: '100%',
-                  width: '100%',
-                  objectFit: 'contain',
-                }}
-              />
-            </div>
-            <div className="image-item__btn-wrapper">
-              <button onClick={() => onImageRemove(index)}>Remove</button>
-            </div>
-          </div>
+          <ImageCard
+            key={index}
+            image={image}
+            index={index}
+            onImageRemove={onImageRemove}
+          />
         ))}
+        {imageList.length < 5 && (
+          <ActionButton
+            Icon={Image}
+            onClick={onImageUpload}
+            title="¡Agrega más!"
+            message={getMessage(imageList.length)}
+            {...dragProps}
+          />
+        )}
+
+        <ActionButton
+          Icon={Upload}
+          onClick={onUpload}
+          title="Carga tus imágenes"
+          message="Enviemos las imagenes a la nube y veamos tus productos"
+        />
+        <ActionButton
+          Icon={Trash}
+          onClick={onImageRemoveAll}
+          title="¿No te gustaron?"
+          message="Remueve todas las imágenes"
+        />
       </div>
-      <button onClick={onUpload}>send image</button>
     </div>
   )
 }

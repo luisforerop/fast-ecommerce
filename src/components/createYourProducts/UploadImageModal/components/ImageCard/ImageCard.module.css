@@ -1,0 +1,53 @@
+.uploadModalImageCardImageContainer {
+  min-height: 240px;
+  display: flex;
+}
+
+.uploadModalImageCardImageContainer img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+
+.uploadModalImageCardRemoveButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: var(--fe-colors-primary);
+}
+
+.uploadModalImageCardFooterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  color: var(--fe-colors-black-100);
+  justify-content: space-between;
+  height: 100%;
+}
+
+.uploadModalImageCardImageName {
+  font-size: 16px;
+  font-weight: 700;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.uploadModalImageCardFooterMetadata {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+
+.uploadModalImageCardFooterMetadata span {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}

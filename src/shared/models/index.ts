@@ -21,4 +21,6 @@ export type UploadedImageRensponse = {
   original_filename: string
 }
 
+export type LiteralObject<ValueType = any> = { [key: string]: ValueType }
+
 export * from './createProducts'
