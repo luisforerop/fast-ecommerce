@@ -9,6 +9,9 @@
   --fe-colors-red-200: #BC3433;
   --fe-colors-black-100: #333B4C;
   --fe-colors-gray-50: #EBEBEB;
+
+  --fe-measures-header: 13vh;
+  --fe-measures-content: 87vh;
 }
 
 
@@ -21,7 +24,7 @@
 }
 
 #__next {
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }

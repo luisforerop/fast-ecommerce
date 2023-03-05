@@ -1,7 +1,11 @@
 import type { FC } from 'react'
 import type { IconProps } from './index'
 
-export const EditIcon: FC<IconProps> = ({ size = 20, secondaryColor }) => {
+export const EditIcon: FC<IconProps> = ({
+  size = 20,
+  secondaryColor,
+  ...props
+}) => {
   return (
     <svg
       width={`${size}px`}
@@ -9,7 +13,9 @@ export const EditIcon: FC<IconProps> = ({ size = 20, secondaryColor }) => {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
+      <title>Editar</title>
       <path
         opacity={secondaryColor ? '1' : '0.4'}
         d="M15.48 3H7.52C4.07 3 2 5.06 2 8.52V16.47C2 19.94 4.07 22 7.52 22H15.47C18.93 22 20.99 19.94 20.99 16.48V8.52C21 5.06 18.93 3 15.48 3Z"

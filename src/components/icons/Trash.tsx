@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import type { IconProps } from './index'
 
-export const Trash: FC<IconProps> = ({ size = 25 }) => {
+export const Trash: FC<IconProps> = ({ size = 25, ...props }) => {
   return (
     <svg
       width={`${size}px`}
@@ -9,6 +9,7 @@ export const Trash: FC<IconProps> = ({ size = 25 }) => {
       viewBox="-7 0 32 32"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <title>Borrar</title>
       <path
