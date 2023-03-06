@@ -23,8 +23,12 @@ export const overloadEffects = {
   radialize: 'tsetur5vzonlhippww6x',
 }
 
+const prod = 'https://yx5yutqvp7.execute-api.us-east-1.amazonaws.com/dev/'
+const dev = 'http://localhost:4000/dev'
+const URL_BASE_FAST_ECOMMERCE = process.env.NEXT_PUBLIC_DEV ? dev : prod
+
 export const fastEcommerceEndpoints = {
-  save: 'http://localhost:4000/dev/saveUser',
-  get: 'http://localhost:4000/dev/getUserData',
-  getUsers: 'http://localhost:4000/dev/getUsers',
+  save: `${URL_BASE_FAST_ECOMMERCE}/saveUser`,
+  get: `${URL_BASE_FAST_ECOMMERCE}/getUserData`,
+  getUsers: `${URL_BASE_FAST_ECOMMERCE}/getUsers`,
 }

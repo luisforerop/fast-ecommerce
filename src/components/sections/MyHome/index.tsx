@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router'
 import styles from './MyHome.module.css'
+import { Ad } from '../Ad'
 export const MyHome = () => {
   const { push } = useRouter()
 
   return (
     <div className="App">
+      <Ad />
       <section className={`${styles.section} ${styles.firstSection}`}>
         <div
           style={{
