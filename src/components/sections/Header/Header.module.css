@@ -1,6 +1,6 @@
 .container {
   width: 100vw;
-  height: 80px;
+  height: var(--fe-measures-header);
   background-color: var(--fe-colors-primary);
   color: var(--fe-colors-white);
   display: flex;

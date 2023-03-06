@@ -8,10 +8,13 @@ import {
 import type { FC, Dispatch, SetStateAction } from 'react'
 import {
   ContextState,
+  DataForSavingType,
   PossibleProductResource,
   UploadedImageRensponse,
 } from '../models'
 import { defaultImages, defaultText } from '../constants'
+import { useMemo } from 'react'
+import { useRouter } from 'next/router'
 
 const uploadedImageFOrTest: UploadedImageRensponse[] = [
   {
@@ -69,6 +72,9 @@ interface ICreateProductsContext {
   uploadModalIsOpen: ContextState<boolean>
   availableUploads: number
   uploadedImages: ContextState<UploadedImageRensponse[]>
+  sentences: ContextState<string[]>
+  thereAreInfoForProducts: number
+  saveProductsData: () => void
 }
 
 const CreateProductsContext = createContext({} as ICreateProductsContext)
@@ -78,6 +84,8 @@ export const useCreateProductsContext = () => useContext(CreateProductsContext)
 export const CreateProductsContextProvider: FC<PropsWithChildren> = ({
   children,
 }) => {
+  const { push, query } = useRouter()
+
   const [currentResource, setCurrentResource] =
     useState<PossibleProductResource>('FROM_IMAGE')
   const [currentSentence, setCurrentSentence] = useState(defaultText.sentence)
@@ -88,6 +96,29 @@ export const CreateProductsContextProvider: FC<PropsWithChildren> = ({
   const [availableUploads, setAvailableUploads] = useState(5)
   const [uploadedImages, setUploadedImages] =
     useState<UploadedImageRensponse[]>(uploadedImageFOrTest)
+  const [sentences, setSentences] = useState<string[]>([])
+  const thereAreInfoForProducts = useMemo(
+    () => sentences.length || uploadedImages.length,
+    [sentences, uploadedImages]
+  )
+
+  const saveProductsData = () => {
+    const productData: DataForSavingType = {
+      userSentences: sentences,
+      userImages: uploadedImages.map(
+        ({ asset_id, folder, original_filename, public_id, tags }) => ({
+          assetId: asset_id,
+          folder,
+          originalFilename: original_filename,
+          publicId: public_id,
+          tags,
+        })
+      ),
+    }
+    localStorage.setItem('productData', JSON.stringify(productData))
+    const userName = query.userName
+    push(`/tienda/${userName}`)
+  }
 
   useEffect(() => {
     setAvailableUploads(5 - uploadedImages.length)
@@ -116,6 +147,12 @@ export const CreateProductsContextProvider: FC<PropsWithChildren> = ({
       value: uploadedImages,
       set: setUploadedImages,
     },
+    sentences: {
+      value: sentences,
+      set: setSentences,
+    },
+    thereAreInfoForProducts,
+    saveProductsData,
   }
   return <Provider value={context}>{children}</Provider>
 }

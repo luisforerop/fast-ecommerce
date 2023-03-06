@@ -1,62 +1,36 @@
-import { UpdatableInput } from '@/components/forms'
+import { ActionButton } from '@/components/forms'
+import { AddIcon } from '@/components/icons/AddIcon'
 import { useCreateProductsContext } from '@/shared/providers'
-import React, { FC } from 'react'
-import { useState } from 'react'
+import { FC, useState } from 'react'
+import { Sentence } from '../Sentence'
+import styles from './CreateFromText.module.css'
 
 export const CreateFromText: FC = () => {
-  const { currentResource, currentSentence } = useCreateProductsContext()
-
-  const [sentences, setSentences] = useState<string[]>([])
-  const [currentSentenceId, setCurrentSentenceId] = useState(0)
+  const { currentResource, currentSentence, sentences } =
+    useCreateProductsContext()
 
   return (
     <div
+      className={styles.container}
       style={{
-        display: currentResource.value === 'FROM_TEXT' ? 'flex' : 'none',
-        flexDirection: 'column',
-        gap: '8px',
+        display: currentResource.value === 'FROM_TEXT' ? 'grid' : 'none',
       }}
     >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '8px',
+      {sentences.value.map((sentence, indexSentence) => (
+        <Sentence
+          index={indexSentence}
+          isCurrent={sentence === currentSentence.value}
+        />
+      ))}
+      <ActionButton
+        customClasses={{
+          card: styles.card,
         }}
-      >
-        {sentences.map((sentence, indexSentence) => (
-          <UpdatableInput
-            isCurrent={currentSentenceId === indexSentence}
-            value={sentence}
-            key={sentence}
-            placeholder="Escribe tu frase"
-            onClick={() => {
-              setCurrentSentenceId(indexSentence)
-              if (sentence) {
-                currentSentence.set(sentence)
-              }
-            }}
-            onChange={(value) => {
-              setSentences((curr) => {
-                const newSentences = curr.map((sentence) => sentence)
-                newSentences[indexSentence] = value
-                return newSentences
-              })
-              if (value) {
-                currentSentence.set(value)
-              }
-            }}
-            onRemove={() => {
-              setSentences((curr) =>
-                curr.filter((_, index) => index !== indexSentence)
-              )
-            }}
-          />
-        ))}
-      </div>
-      <button
+        Icon={AddIcon}
+        title="Agregar frase"
+        message="Deja volar tu imaginación"
         onClick={() => {
-          setSentences((curr) => {
+          sentences.set((curr) => {
             const allInputsHaveASentence = !curr.includes('')
             if (allInputsHaveASentence) {
               return [...curr, '']
@@ -65,9 +39,7 @@ export const CreateFromText: FC = () => {
             return curr
           })
         }}
-      >
-        Agregar frase
-      </button>
+      />
     </div>
   )
 }

@@ -1,0 +1,28 @@
+.container {
+  padding: 0 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.action,
+.selectedAction {
+  background-color: transparent;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  background: var(--fe-colors-white);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fe-colors-primary);
+}
+
+.selectedAction {
+  box-shadow: 5px -5px 12px #e0e0e0,
+    -5px 5px 12px var(--fe-colors-white);
+}
+
+.action {
+  box-shadow: inset -5px -5px 10px #d9d9d9,
+    inset 5px 5px 10px var(--fe-colors-white);
+}

@@ -3,8 +3,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
-  border: 1px solid;
+  height: 100%;
   width: 50vw;
+  border-radius: 13px;
+  background: #ffffff;
+  box-shadow: 8px 8px 20px #e0e0e0,
+    -8px -8px 20px #ffffff;
 }
 
 .createFromImageContainerSelected {

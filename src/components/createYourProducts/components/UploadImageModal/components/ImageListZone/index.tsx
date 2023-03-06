@@ -1,7 +1,8 @@
+import { ActionButton } from '@/components/forms'
 import { Image, Trash, Upload } from '@/components/icons'
+import { useCreateProductsContext } from '@/shared/providers'
 import { FC } from 'react'
 import type { ImageListType } from 'react-images-uploading'
-import { ActionButton } from '../ActionButton'
 import { ImageCard } from '../ImageCard'
 import styles from './ImageListZone.module.css'
 
@@ -21,9 +22,9 @@ type ImageListZoneProps = {
   }
 }
 
-const getMessage = (quantity: number) => {
+const getMessage = (quantity: number, availableUploads: number) => {
   const imageText = quantity === 1 ? 'imagen' : 'imágenes'
-  return `Aún tienes espacio para ${5 - quantity} ${imageText}`
+  return `Aún tienes espacio para ${availableUploads - quantity} ${imageText}`
 }
 
 export const ImageListZone: FC<ImageListZoneProps> = ({
@@ -34,6 +35,7 @@ export const ImageListZone: FC<ImageListZoneProps> = ({
   onImageRemove,
   onUpload,
 }) => {
+  const { availableUploads } = useCreateProductsContext()
   return (
     <div className={styles.uploadImageModalImageListZoneContainer}>
       <div className={styles.uploadImageModalImagesContainer}>
@@ -45,12 +47,12 @@ export const ImageListZone: FC<ImageListZoneProps> = ({
             onImageRemove={onImageRemove}
           />
         ))}
-        {imageList.length < 5 && (
+        {imageList.length < availableUploads && (
           <ActionButton
             Icon={Image}
             onClick={onImageUpload}
             title="¡Agrega más!"
-            message={getMessage(imageList.length)}
+            message={getMessage(imageList.length, availableUploads)}
             {...dragProps}
           />
         )}

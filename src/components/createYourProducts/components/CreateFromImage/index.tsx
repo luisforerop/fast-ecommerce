@@ -1,7 +1,7 @@
+import { Card } from '@/components/forms'
 import { Image } from '@/components/icons'
 import { useCreateProductsContext } from '@/shared/providers'
 import { FC, useState } from 'react'
-import { Card } from '../UploadImageModal/components'
 import styles from './CreateFromImage.module.css'
 
 export const CreateFromImage: FC = () => {

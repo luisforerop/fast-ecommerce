@@ -48,16 +48,19 @@ const products: ProductInfoType[] = [
 ]
 
 export const Previewer = () => {
-  const { currentImageName, currentResource, currentSentence } =
-    useCreateProductsContext()
+  const {
+    currentImageName,
+    currentResource,
+    currentSentence,
+    saveProductsData,
+    thereAreInfoForProducts,
+  } = useCreateProductsContext()
   const [mainImageUrl, setMainImageUrl] = useState(
     getMugProductImage({
       imageName: defaultImages.mainProduct,
       resourceType: 'FROM_IMAGE',
     })
   )
-  const [effect, setEffect] = useState<string | undefined>('')
-
   const [currentProductId, setCurrentProductId] = useState(0)
   const [currentProduct, setCurrentProduct] = useState<PossibleProduct>('MUG')
 
@@ -77,57 +80,50 @@ export const Previewer = () => {
   ])
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Así se verá tu producto</h2>
-      <div
-        style={{
-          display: 'flex',
-          width: '300px',
-          height: '350px',
-          overflow: 'hidden',
-          borderRadius: '8px',
-        }}
-      >
-        <img
-          src={mainImageUrl}
-          alt="Tu producto"
-          className={styles.previewerMainImage}
-        />
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          gap: '8px',
-        }}
-      >
-        {products.map(({ alt, src, productType }, index) => (
-          <div
-            onClick={() => {
-              setCurrentProduct(productType)
-              setCurrentProductId(index)
-            }}
-            key={alt}
-            style={{
-              height: '75px',
-              width: '75px',
-              display: 'flex',
-              overflow: 'hidden',
-              borderRadius: '8px',
-              border: currentProductId === index ? '1px solid blue' : '',
-            }}
-          >
-            <img
-              src={src}
-              alt={alt}
-              style={{
-                height: '75px',
-                width: '75px',
-                objectFit: 'cover',
+      <div className={styles.imagesContainer}>
+        <div className={styles.mainImageContainer}>
+          <img
+            src={mainImageUrl}
+            alt="Tu producto"
+            className={styles.mainImage}
+          />
+        </div>
+        <div className={styles.productImagesContainer}>
+          {products.map(({ alt, src, productType }, index) => (
+            <div
+              onClick={() => {
+                setCurrentProduct(productType)
+                setCurrentProductId(index)
               }}
-            />
-          </div>
-        ))}
+              key={alt}
+              className={
+                currentProductId === index
+                  ? styles.selectProductImage
+                  : styles.productImageContainer
+              }
+            >
+              <img src={src} alt={alt} className={styles.productImage} />
+            </div>
+          ))}
+        </div>
       </div>
+      <button
+        className={
+          thereAreInfoForProducts
+            ? styles.nextStepButton
+            : styles.disabledNextStepButton
+        }
+        onClick={() => {
+          if (!thereAreInfoForProducts) {
+            return
+          }
+          saveProductsData()
+        }}
+      >
+        Crea tu ecommerce!
+      </button>
     </div>
   )
 }

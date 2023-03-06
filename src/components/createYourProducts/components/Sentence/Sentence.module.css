@@ -1,0 +1,55 @@
+.container,
+.currentSentence {
+  max-height: 300px;
+}
+
+.currentSentence {
+  box-shadow: inset -5px -5px 10px #d9d9d9,
+    inset 5px 5px 10px var(--fe-colors-white);
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: var(--fe-colors-primary);
+  color: var(--fe-colors-white);
+  height: 40px;
+  align-items: center;
+  padding: 16px;
+  font-size: 14px;
+}
+
+.actionsContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  color: var(--fe-colors-white);
+}
+
+
+.sentenceZoneContainer {
+  padding: 16px;
+  height: 100%;
+}
+
+.sentenceArea,
+.textArea {
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  background-color: transparent;
+  border-radius: 8px;
+  box-shadow: inset 15px 15px 30px #f5f5f5,
+    inset -15px -15px 30px #ffffff;
+}
+
+.textArea {
+  resize: none;
+  outline: none;
+  border: none;
+}
+
+.sentenceArea {
+  height: fit-content;
+}

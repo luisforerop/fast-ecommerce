@@ -1,7 +1,7 @@
+import { Card } from '@/components/forms'
 import { Image, Trash } from '@/components/icons'
 import { FC, useEffect, useRef, useState } from 'react'
 import type { ImageType } from 'react-images-uploading'
-import { Card } from '../Card'
 import styles from './ImageCard.module.css'
 
 type ImageCardProps = {
