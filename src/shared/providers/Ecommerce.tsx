@@ -3,9 +3,10 @@ import { createContext, useContext } from 'react'
 import { useGetUserProfile } from '@/shared/hooks'
 import type { IProductsInfo, IUserData } from '@/shared/models'
 
-export interface IEcommerceContext extends IUserData {
+export interface IEcommerceContext {
   products: IProductsInfo[]
   followers: number
+  userData: IUserData | null
 }
 
 const EcommerceContext = createContext({} as IEcommerceContext)

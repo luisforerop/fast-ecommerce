@@ -3,14 +3,11 @@ import { useEcommerceContext } from '@/shared/providers'
 import React from 'react'
 
 export const SellerInformation = () => {
-  const {
-    userName,
-    description,
-    profileImage: imageProfile,
-    website,
-    products: productImages,
-    followers,
-  } = useEcommerceContext()
+  const { userData, products: productImages, followers } = useEcommerceContext()
+
+  if (!userData) return null
+  const { userName, description, profileImage, website } = userData
+
   return (
     <div
       className="Header"
@@ -39,7 +36,7 @@ export const SellerInformation = () => {
             width: '200px',
             objectFit: 'cover',
           }}
-          src={imageProfile}
+          src={profileImage}
           alt={`Una foto de ${userName}`}
         />
       </div>
