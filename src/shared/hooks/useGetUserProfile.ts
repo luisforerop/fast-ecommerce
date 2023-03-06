@@ -4,6 +4,7 @@ import { IProductData } from '../models/createProducts'
 import { IUserData } from '../models/index'
 import { IEcommerceContext } from '../providers/Ecommerce'
 import { useGetProducts } from './useGetProducts'
+import { fastEcommerceEndpoints } from '../constants'
 
 // hacemos un split y un reducer para validar cuantas palabras se necesitan para acumular 14
 
@@ -17,7 +18,7 @@ export const useGetUserProfile = (): IEcommerceContext => {
 
   useEffect(() => {
     if (name) {
-      fetch(`http://localhost:4000/dev/getUserData?userName=${name}`)
+      fetch(`${fastEcommerceEndpoints.get}?userName=${name}`)
         .then((res) => res.json())
         .then((data) => {
           const { products: productsFromApi, userInformation } = data as {
