@@ -4,7 +4,7 @@ import { useGetUserProfile } from '@/shared/hooks'
 import type { IProductsInfo, IUserData } from '@/shared/models'
 
 export interface IEcommerceContext {
-  products: IProductsInfo[]
+  products: IProductsInfo[] | null
   followers: number
   userData: IUserData | null
 }

@@ -1,48 +1,20 @@
-import React from 'react'
-import styles from './ProductList.module.css'
 import { useEcommerceContext } from '@/shared/providers'
+import styles from './ProductList.module.css'
 
 export const ProductList = () => {
   const { products } = useEcommerceContext()
+
+  if (!products) return <div>Cargando...</div>
+
   return (
     <div className={styles.container}>
       {products.map(({ id, src, name, price }) => (
-        <div
-          key={id}
-          style={{
-            width: '240px',
-            height: '320px',
-            overflow: 'hidden',
-            borderRadius: '8px',
-            background: '#f7f7f7',
-            boxShadow: ' 5px 5px 6px #ebebeb, -5px -5px 6px #ffffff',
-          }}
-        >
-          <div
-            style={{
-              width: '240px',
-              height: '250px',
-            }}
-          >
-            <img
-              src={src}
-              alt=""
-              style={{
-                width: '240px',
-                height: '250px',
-                objectFit: 'cover',
-              }}
-            />
+        <div key={id} className={styles.cardContainer}>
+          <div className={styles.cardImageContainer}>
+            <img src={src} alt="" className={styles.cardImage} />
           </div>
-          <div
-            style={{
-              padding: '8px 16px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '8px',
-            }}
-          >
-            <span>{name}</span>
+          <div className={styles.footerCard}>
+            <span className={styles.productName}>{name}</span>
             <span>$ {price}</span>
           </div>
         </div>

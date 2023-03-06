@@ -3,30 +3,17 @@ import {
   defaultImages,
   products as productsSrc,
 } from '@/shared/constants'
+import { PossibleProduct } from '@/shared/models'
 import { useCreateProductsContext } from '@/shared/providers'
-import {
-  getHoddieProductImage,
-  getMugProductImage,
-  getTShirtProductImage,
-} from '@/shared/utils'
-import { useState, useEffect } from 'react'
+import { getMugProductImage } from '@/shared/utils'
+import { getPrincipalImageFunction } from '@/shared/utils'
+import { useEffect, useState } from 'react'
 import styles from './Previewer.module.css'
-import { GetSpecificProductType } from '@/shared/models'
-
-type PossibleProduct = 'MUG' | 'T_SHIRT' | 'HODDIE'
 
 type ProductInfoType = {
   src: string
   alt: string
   productType: PossibleProduct
-}
-
-const getPrincipalImageFunction: {
-  [key in PossibleProduct]: GetSpecificProductType
-} = {
-  HODDIE: getHoddieProductImage,
-  MUG: getMugProductImage,
-  T_SHIRT: getTShirtProductImage,
 }
 
 const products: ProductInfoType[] = [

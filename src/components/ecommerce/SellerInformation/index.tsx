@@ -3,7 +3,7 @@ import { useEcommerceContext } from '@/shared/providers'
 import React from 'react'
 
 export const SellerInformation = () => {
-  const { userData, products: productImages, followers } = useEcommerceContext()
+  const { userData, products, followers } = useEcommerceContext()
 
   if (!userData) return null
   const { userName, description, profileImage, website } = userData
@@ -106,7 +106,7 @@ export const SellerInformation = () => {
             fontSize: '18px',
           }}
         >
-          <span>{`${productImages.length} productos`}</span>
+          <span>{!products ? 'cargando' : `${products.length} productos`}</span>
           <span>{`${followers} seguidores`}</span>
         </section>
       </div>

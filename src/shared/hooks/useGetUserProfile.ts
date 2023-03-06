@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
-import { IProductsInfo } from '../models'
-import { IEcommerceContext } from '../providers/Ecommerce'
 import { useEffect, useState } from 'react'
 import { IUserData } from '../models/index'
+import { IEcommerceContext } from '../providers/Ecommerce'
+import { useGetProducts } from './useGetProducts'
 
-const src =
-  'https://res.cloudinary.com/dy7myxpvn/image/upload/v1677898577/fast-ecommerce/mockups/hxvdkdwolbbuggb9pe4c.jpg'
+// hacemos un split y un reducer para validar cuantas palabras se necesitan para acumular 14
 
 export const useGetUserProfile = (): IEcommerceContext => {
   const {
@@ -13,6 +12,7 @@ export const useGetUserProfile = (): IEcommerceContext => {
   } = useRouter() as unknown as { query: { name: string } }
 
   const [userData, setUserData] = useState<IUserData | null>(null)
+  const products = useGetProducts()
 
   useEffect(() => {
     const stringifiedUser = localStorage.getItem('userData')
@@ -21,13 +21,6 @@ export const useGetUserProfile = (): IEcommerceContext => {
       setUserData(userData)
     } catch (_e) {}
   }, [])
-
-  const products: IProductsInfo[] = Array.from({ length: 15 }, (_, i) => ({
-    id: `${i}`,
-    name: 'Un mug todo gonito',
-    price: 10,
-    src,
-  }))
 
   return {
     userData,

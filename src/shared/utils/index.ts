@@ -3,6 +3,7 @@ import {
   GetProductParamsType,
   GetProductType,
   GetSpecificProductType,
+  PossibleProduct,
   PossibleProductResource,
 } from '../models'
 
@@ -82,7 +83,28 @@ export const getProductImage: GetProductType = ({
   return `${config.baseUrl}/w_500/l_${overResource}/${placement}/${product}`
 }
 
-// https://res.cloudinary.com/dy7myxpvn/image/upload/w_500/l_fast-ecommerce:vund7r5c9oukzwqjemse/c_pad,w_150/fl_layer_apply,x_-30,y_-10/fast-ecommerce/mockups/d2iou7yli9gz9d9udbhz.jpg
+export const getPrincipalImageFunction: {
+  [key in PossibleProduct]: GetSpecificProductType
+} = {
+  HODDIE: getHoddieProductImage,
+  MUG: getMugProductImage,
+  T_SHIRT: getTShirtProductImage,
+}
 
-// mala
-// https://res.cloudinary.com/dy7myxpvn/image/upload/w_500/l_fast-ecommerce:vund7r5c9oukzwqjemse/c_pad,w_120/fl_layer_apply,x_-30,y_-10/c_pad,w_120/fl_layer_apply,x_-30,y_-10/fast-ecommerce/mockups/d2iou7yli9gz9d9udbhz.jpg
+export const namesOfProducts: {
+  [key in PossibleProduct]: string
+} = {
+  HODDIE: 'Saco',
+  MUG: 'Mug',
+  T_SHIRT: 'Camiseta',
+}
+
+export const valueOfProducts: {
+  [key in PossibleProduct]: number
+} = {
+  HODDIE: 20,
+  MUG: 7,
+  T_SHIRT: 10,
+}
+
+export const possibleProducts: PossibleProduct[] = ['HODDIE', 'MUG', 'T_SHIRT']

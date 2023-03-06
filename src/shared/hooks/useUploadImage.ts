@@ -50,6 +50,7 @@ export const useUploadImage = () => {
               return resolve({ status: 'error' })
             }
             const data: UploadedImageRensponse = await res.json()
+            setUploading(false)
             return resolve({
               status: 'uploaded',
               data,

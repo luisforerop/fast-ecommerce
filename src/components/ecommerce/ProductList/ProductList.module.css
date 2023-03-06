@@ -4,3 +4,37 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
 }
+
+.cardContainer {
+  width: 240px;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f7f7f7;
+  box-shadow: 5px 5px 6px #ebebeb, -5px -5px 6px #ffffff;
+}
+
+.cardImageContainer {
+  width: 240px;
+  height: 250px;
+}
+
+.cardImage {
+  width: 240px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.footerCard {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.productName {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

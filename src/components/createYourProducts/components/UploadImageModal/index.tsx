@@ -6,8 +6,7 @@ import { CloseModalButton, ModalContent } from './components'
 import { Loader } from './components/Loader'
 
 export const UploadImageModal = () => {
-  const { uploadModalIsOpen, uploadedImages, availableUploads } =
-    useCreateProductsContext()
+  const { uploadModalIsOpen, uploadedImages } = useCreateProductsContext()
   const uploadImagesState = useUploadImage()
 
   useEffect(() => {

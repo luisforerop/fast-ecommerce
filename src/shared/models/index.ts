@@ -46,15 +46,6 @@ export interface DataForSavingType {
   userSentences: string[]
 }
 
-// lo que se debe cargar en el contexto
-// desde un hook se parsea la información y se recupera el resto de valores.
-export interface IProductData {
-  productType: 'mug' // con esto se consulta el valor del producto
-  name: string
-  src: string // se mapean en el back
-  id: string // id generado en la db
-}
-
 export type ContextState<StateType> = {
   value: StateType
   set: Dispatch<SetStateAction<StateType>>

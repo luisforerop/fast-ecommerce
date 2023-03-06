@@ -30,7 +30,7 @@ export const MyHome = () => {
             }}
           >
             Monetiza tu trabajo en solo dos pasos. Crea tu propio ecommerce y
-            vende tu merch a tus seguidores, de seguro de lo agradecerán.
+            vende tu merch a tus seguidores, de seguro te lo agradecerán.
           </p>
           <button
             className="button  bg-btn"

@@ -35,3 +35,15 @@ export interface IProductsInfo {
   price: number
   id: string
 }
+
+// lo que se debe cargar en el contexto
+// desde un hook se parsea la información y se recupera el resto de valores.
+
+export type PossibleProduct = 'MUG' | 'T_SHIRT' | 'HODDIE'
+
+export interface IProductData {
+  productType: PossibleProduct // con esto se consulta el valor del producto
+  name: string
+  src: string // se mapean en el back
+  id: string // id generado en la db
+}
