@@ -8,8 +8,9 @@ interface ICreateProfileContext {
   webSiteLink: ContextState<string>
   webSiteName: ContextState<string>
   profileImage: ContextState<string>
-  saveUserData: () => void
   userInformationCompleted: boolean
+  saveUserData: () => void
+  getUserInformation: () => IUserData
 }
 const CreateProfileContext = createContext({} as ICreateProfileContext)
 
@@ -42,6 +43,16 @@ export const CreateProfileContextProvider: FC<PropsWithChildren> = ({
     localStorage.setItem('userData', JSON.stringify(userData))
   }
 
+  const getUserInformation = useCallback(
+    () => ({
+      description,
+      profileImage,
+      userName,
+      website: { link: webSiteLink, description: webSiteName },
+    }),
+    [description, profileImage, userName, webSiteLink, webSiteName]
+  )
+
   const context: ICreateProfileContext = {
     description: {
       set: setDescription,
@@ -65,6 +76,7 @@ export const CreateProfileContextProvider: FC<PropsWithChildren> = ({
     },
     userInformationCompleted,
     saveUserData,
+    getUserInformation,
   }
   return <Provider value={context}>{children}</Provider>
 }

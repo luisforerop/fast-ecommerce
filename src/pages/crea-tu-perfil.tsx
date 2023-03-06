@@ -12,9 +12,7 @@ export default function CreateProfilePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/fast-ecommerce.svg" />
       </Head>
-      <CreateProfileContextProvider>
-        <CreateProfile />
-      </CreateProfileContextProvider>
+      <CreateProfile />
     </Fragment>
   )
 }

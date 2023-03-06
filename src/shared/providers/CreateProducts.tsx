@@ -8,10 +8,16 @@ import {
   useMemo,
   useState,
 } from 'react'
-import { defaultImages, defaultText } from '../constants'
+import {
+  defaultImages,
+  defaultText,
+  fastEcommerceEndpoints,
+} from '../constants'
+import { useCreateProfileContext } from '@/shared/providers'
+import { IDataForSaving } from '../models/index'
 import {
   ContextState,
-  DataForSavingType,
+  IResourcesForProducts,
   PossibleProductResource,
   UploadedImageRensponse,
 } from '../models'
@@ -25,7 +31,7 @@ interface ICreateProductsContext {
   uploadedImages: ContextState<UploadedImageRensponse[]>
   sentences: ContextState<string[]>
   thereAreInfoForProducts: number
-  saveProductsData: () => void
+  sendUserData: () => void
 }
 
 const CreateProductsContext = createContext({} as ICreateProductsContext)
@@ -35,7 +41,8 @@ export const useCreateProductsContext = () => useContext(CreateProductsContext)
 export const CreateProductsContextProvider: FC<PropsWithChildren> = ({
   children,
 }) => {
-  const { push, query } = useRouter()
+  const { push } = useRouter()
+  const { userName, getUserInformation } = useCreateProfileContext()
 
   const [currentResource, setCurrentResource] =
     useState<PossibleProductResource>('FROM_IMAGE')
@@ -54,8 +61,8 @@ export const CreateProductsContextProvider: FC<PropsWithChildren> = ({
     [sentences, uploadedImages]
   )
 
-  const saveProductsData = () => {
-    const productData: DataForSavingType = {
+  const sendUserData = () => {
+    const resourcesForProducts: IResourcesForProducts = {
       userSentences: sentences,
       userImages: uploadedImages.map(
         ({ asset_id, folder, original_filename, public_id, tags }) => ({
@@ -67,9 +74,23 @@ export const CreateProductsContextProvider: FC<PropsWithChildren> = ({
         })
       ),
     }
-    localStorage.setItem('productData', JSON.stringify(productData))
-    const userName = query.userName
-    push(`/tienda/${userName}`)
+    const body: IDataForSaving = {
+      resourcesForProducts,
+      userInformation: getUserInformation(),
+    }
+    var headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    const config: RequestInit = {
+      body: JSON.stringify(body),
+      method: 'POST',
+      headers,
+    }
+
+    fetch(fastEcommerceEndpoints.save, config)
+      .then((res) => res.json())
+      .then((data) => {
+        push(`/tienda/${userName.value}`)
+      })
   }
 
   useEffect(() => {
@@ -104,7 +125,7 @@ export const CreateProductsContextProvider: FC<PropsWithChildren> = ({
       set: setSentences,
     },
     thereAreInfoForProducts,
-    saveProductsData,
+    sendUserData,
   }
   return <Provider value={context}>{children}</Provider>
 }

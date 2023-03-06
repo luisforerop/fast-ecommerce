@@ -39,7 +39,7 @@ export const Previewer = () => {
     currentImageName,
     currentResource,
     currentSentence,
-    saveProductsData,
+    sendUserData: saveProductsData,
     thereAreInfoForProducts,
   } = useCreateProductsContext()
   const [mainImageUrl, setMainImageUrl] = useState(

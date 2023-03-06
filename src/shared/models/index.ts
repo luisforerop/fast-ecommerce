@@ -41,9 +41,14 @@ export interface IUserImage {
   assetId: string
 }
 
-export interface DataForSavingType {
+export interface IResourcesForProducts {
   userImages: IUserImage[] // las imagenes que subio el usuario para ENVIAr a proveedores
   userSentences: string[]
+}
+
+export interface IDataForSaving {
+  userInformation: IUserData
+  resourcesForProducts: IResourcesForProducts
 }
 
 export type ContextState<StateType> = {

@@ -22,3 +22,8 @@ export const products = {
 export const overloadEffects = {
   radialize: 'tsetur5vzonlhippww6x',
 }
+
+export const fastEcommerceEndpoints = {
+  save: 'http://localhost:4000/dev/saveUser',
+  get: 'http://localhost:4000/dev/getUserData',
+}
