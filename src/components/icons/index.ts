@@ -6,6 +6,8 @@ export interface IconProps extends SVGProps<SVGSVGElement> {
   secondaryColor?: string
 }
 
+export * from './AddIcon'
+export * from './CartIcon'
 export * from './Check'
 export * from './Close'
 export * from './EditIcon'

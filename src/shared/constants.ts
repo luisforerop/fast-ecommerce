@@ -26,4 +26,5 @@ export const overloadEffects = {
 export const fastEcommerceEndpoints = {
   save: 'http://localhost:4000/dev/saveUser',
   get: 'http://localhost:4000/dev/getUserData',
+  getUsers: 'http://localhost:4000/dev/getUsers',
 }
