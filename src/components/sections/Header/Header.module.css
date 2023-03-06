@@ -8,3 +8,9 @@
   padding: 32px;
   font-size: 32px;
 }
+
+.container a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

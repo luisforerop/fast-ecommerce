@@ -34,7 +34,7 @@ export const ProfileImage: FC<ProfileImageProps> = ({
         Arrastra y suelta para actualizar tu imagen de perfil
       </div>
       <button className={styles.button} onClick={onImageUpload}>
-        <EditIcon size={30} secondaryColor="var(--fe-colors-gray-50)" />
+        <EditIcon size={50} secondaryColor="var(--fe-colors-gray-50)" />
       </button>
     </div>
   )

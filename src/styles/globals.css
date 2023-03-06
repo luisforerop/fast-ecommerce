@@ -36,6 +36,21 @@ body {
   overflow-x: hidden;
 }
 
+.button {
+  width: fit-content;
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: var(--fe-colors-emphasis);
+  color: var(--fe-colors-white);
+}
+
+.bg-btn {
+  padding: 12px 32px;
+  font-size: 20px;
+}
 
 a {
   color: inherit;
