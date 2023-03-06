@@ -22,6 +22,7 @@ export const useUploadImage = () => {
   // Implementar mensaje de error en caso de que las imagenes no se hayan cargado correctamente
 
   const onChange = (imageList: ImageListType) => {
+    console.log(process.env.NEXT_PUBLIC_URL_FOR_UPLOADING)
     setImages(imageList)
   }
 
@@ -41,7 +42,7 @@ export const useUploadImage = () => {
         imageForUploading.append('timestamp', `${Date.now() / 1000}`)
         imageForUploading.append('api_key', '563122958277756')
 
-        fetch(URL_FOR_UPLOADING, {
+        fetch(process.env.NEXT_PUBLIC_URL_FOR_UPLOADING!, {
           method: 'POST',
           body: imageForUploading,
         })
