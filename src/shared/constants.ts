@@ -10,6 +10,7 @@ export const defaultText = {
 export const config = {
   uploadPreset: 'fast-ecommerce',
   baseUrl: 'https://res.cloudinary.com/dy7myxpvn/image/upload',
+  uploadUrl: 'https://api.cloudinary.com/v1_1/dy7myxpvn/image/upload',
 }
 
 export const products = {
