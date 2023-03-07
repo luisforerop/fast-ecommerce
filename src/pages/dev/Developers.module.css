@@ -1,0 +1,11 @@
+.toast {
+  font-size: 50px;
+}
+
+.toast li {
+  background-color: var(--fe-colors-primary) !important;
+  color: var(--fe-colors-white) !important;
+  border: none !important;
+  font-size: 18px !important;
+  box-shadow: 10px 16px 16px #d9d9d9 !important;
+}

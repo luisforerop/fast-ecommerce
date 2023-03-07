@@ -22,6 +22,11 @@
   font-size: 18px;
 }
 
+.ecommerceLink {
+  display: flex;
+  gap: 24px;
+}
+
 .ecommerceLink a {
   display: flex;
   align-items: center;

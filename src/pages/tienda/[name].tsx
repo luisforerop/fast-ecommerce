@@ -1,6 +1,7 @@
 import { ProductList, SellerInformation } from '@/components/ecommerce'
 import { EcommerceContextProvider } from '@/shared/providers'
 import Head from 'next/head'
+import { Toaster } from 'sonner'
 
 export default function UserEcommerce() {
   return (
@@ -19,6 +20,7 @@ export default function UserEcommerce() {
             width: '100%',
           }}
         >
+          <Toaster />
           <SellerInformation />
           <ProductList />
         </div>

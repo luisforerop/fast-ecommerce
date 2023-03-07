@@ -9,7 +9,9 @@ export const ProfileInformation = () => {
   const inputs = [
     {
       onChange: (event: ChangeEvent<HTMLInputElement>) =>
-        userName.set(event.target.value),
+        userName.set(
+          event.target.value.replace(/[^_0-9A-ZÑ \n]/gi, '').replace(/ /g, '_')
+        ),
       placeholder: 'Tu nombre de usuario *',
       value: userName.value,
       className: styles.userName,

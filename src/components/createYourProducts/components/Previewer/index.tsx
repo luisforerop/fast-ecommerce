@@ -5,10 +5,11 @@ import {
 } from '@/shared/constants'
 import { PossibleProduct } from '@/shared/models'
 import { useCreateProductsContext } from '@/shared/providers'
-import { getMugProductImage } from '@/shared/utils'
-import { getPrincipalImageFunction } from '@/shared/utils'
-import { useEffect, useState } from 'react'
+import { getMugProductImage, getPrincipalImageFunction } from '@/shared/utils'
+import { useEffect, useRef, useState } from 'react'
+import { Toaster, toast } from 'sonner'
 import styles from './Previewer.module.css'
+import { ThreeDots } from 'react-loader-spinner'
 
 type ProductInfoType = {
   src: string
@@ -51,6 +52,8 @@ export const Previewer = () => {
   const [currentProductId, setCurrentProductId] = useState(0)
   const [currentProduct, setCurrentProduct] = useState<PossibleProduct>('MUG')
 
+  const resolveRef = useRef<any>()
+
   useEffect(() => {
     setMainImageUrl(
       getPrincipalImageFunction[currentProduct]({
@@ -66,8 +69,25 @@ export const Previewer = () => {
     currentSentence.value,
   ])
 
+  useEffect(() => {
+    toast.custom((id) => {
+      resolveRef.current = id
+      return (
+        <ThreeDots
+          height="80"
+          width="80"
+          radius="9"
+          color="var(--fe-colors-primary)"
+          ariaLabel="three-dots-loading"
+          visible={true}
+        />
+      )
+    })
+  }, [mainImageUrl])
+
   return (
     <div className={styles.container}>
+      <Toaster />
       <h2>Así se verá tu producto</h2>
       <div className={styles.imagesContainer}>
         <div className={styles.mainImageContainer}>
@@ -75,6 +95,9 @@ export const Previewer = () => {
             src={mainImageUrl}
             alt="Tu producto"
             className={styles.mainImage}
+            onLoad={() => {
+              toast.dismiss(resolveRef.current)
+            }}
           />
         </div>
         <div className={styles.productImagesContainer}>

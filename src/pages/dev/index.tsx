@@ -1,8 +1,11 @@
-import { Logo } from '@/components/icons/Logo'
 import Head from 'next/head'
 import { Fragment } from 'react'
+import { Toaster, toast } from 'sonner'
+import styles from './Developers.module.css'
 
 export default function Developers() {
+  const promise = () => new Promise((resolve) => setTimeout(resolve, 2000))
+
   return (
     <>
       <Head>
@@ -12,6 +15,7 @@ export default function Developers() {
         <link rel="icon" href="/fast-ecommerce.svg" />
       </Head>
       <Fragment>
+        <Toaster closeButton className={styles.toast} />
         <section
           style={{
             padding: '48px 80px ',
@@ -46,16 +50,37 @@ export default function Developers() {
                 borderRadius: '4px',
               }}
             />
-            <p
+            <div
               style={{
-                fontSize: '24px',
+                display: 'flex',
+                gap: '24px',
+                flexDirection: 'column',
               }}
             >
-              Con fast ecommerce api podrás tener acceso a imágenes optimizadas,
-              ya sea que las necesites para tu pdp, plp o una miniatura de
-              producto. Además, ten acceso exclusivo a nuestro catálogo de
-              productos y proveedores (coming soon).
-            </p>
+              <p
+                style={{
+                  fontSize: '24px',
+                }}
+              >
+                Con fast ecommerce api podrás tener acceso a imágenes
+                optimizadas, ya sea que las necesites para tu pdp, plp o una
+                miniatura de producto. Además, ten acceso exclusivo a nuestro
+                catálogo de productos y proveedores (coming soon).
+              </p>
+              <button
+                className="button"
+                style={{ fontSize: '24px', width: '350px' }}
+                onClick={() =>
+                  toast.promise(promise, {
+                    loading: 'Espérala muy pronto',
+                    success: 'Estará genial!',
+                    error: 'Error',
+                  })
+                }
+              >
+                Try it!
+              </button>
+            </div>
           </div>
           <div
             style={{

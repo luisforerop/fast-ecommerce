@@ -18,6 +18,7 @@ export const CreateFromText: FC = () => {
     >
       {sentences.value.map((sentence, indexSentence) => (
         <Sentence
+          key={indexSentence}
           index={indexSentence}
           isCurrent={sentence === currentSentence.value}
         />
