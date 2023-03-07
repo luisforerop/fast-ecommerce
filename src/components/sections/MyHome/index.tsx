@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import styles from './MyHome.module.css'
 import { Ad } from '../Ad'
+import { Footer } from '../Footer'
 export const MyHome = () => {
   const { push } = useRouter()
 

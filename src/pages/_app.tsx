@@ -1,4 +1,4 @@
-import { Header } from '@/components/sections'
+import { Footer, Header } from '@/components/sections'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Fragment } from 'react'
@@ -18,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Fragment>
         <Header />
         <Component {...pageProps} />
+        <Footer />
       </Fragment>
     )
   }

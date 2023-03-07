@@ -1,4 +1,5 @@
 import { ProductList, SellerInformation } from '@/components/ecommerce'
+import { Footer } from '@/components/sections'
 import { EcommerceContextProvider } from '@/shared/providers'
 import Head from 'next/head'
 import { Toaster } from 'sonner'
