@@ -95,9 +95,7 @@ export const Previewer = () => {
             src={mainImageUrl}
             alt="Tu producto"
             className={styles.mainImage}
-            onLoad={() => {
-              toast.dismiss(resolveRef.current)
-            }}
+            onLoad={() => toast.dismiss(resolveRef.current)}
           />
         </div>
         <div className={styles.productImagesContainer}>

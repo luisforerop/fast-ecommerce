@@ -35,7 +35,7 @@
   color: var(--fe-colors-primary);
 }
 
-.secondSection div {
+.secondSection>div {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 40px 0;
@@ -55,4 +55,30 @@
 
 .secondSection p {
   color: var(--fe-colors-black-200);
+}
+
+
+.tutorialImageContainer {
+  width: 528px;
+  height: 252px;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 14px 14px 28px #cfcfcf,
+    -14px -14px 28px #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.tutorialImageContainer>img {
+  width: 528px;
+  height: 252px;
+  object-fit: cover;
+}
+
+.tutorialFirstImage {
+  height: 244px;
+  width: 540;
 }

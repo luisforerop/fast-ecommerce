@@ -1,6 +1,7 @@
 import { EditIcon } from '@/components/icons'
-import { FC } from 'react'
+import { FC, MutableRefObject } from 'react'
 import styles from './ProfileImage.module.css'
+import { Toaster, toast } from 'sonner'
 
 type ProfileImageProps = {
   dragProps: {
@@ -12,22 +13,24 @@ type ProfileImageProps = {
   }
   onImageUpload: () => void
   src: string
+  loaded: MutableRefObject<any>
 }
 
 export const ProfileImage: FC<ProfileImageProps> = ({
-  dragProps,
   onImageUpload,
+  dragProps,
+  loaded,
   src,
 }) => {
   return (
     <div className={styles.container} {...dragProps}>
+      <Toaster />
       <div className={styles.imageContainer}>
         <img
           className={styles.image}
           src={src}
           alt="profile-image"
-          onLoad={() => console.log('onload')}
-          onLoadStart={() => console.log('onload start')}
+          onLoad={() => toast.dismiss(loaded.current)}
         />
       </div>
       <div className={styles.addContainer}>

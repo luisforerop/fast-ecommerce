@@ -58,6 +58,13 @@ export const MyHome = () => {
               encuentren. Tu nombre de perfil, una descripción de lo que haces y
               un enlace, puede ser de tus redes sociales
             </p>
+            <div className={styles.tutorialImageContainer}>
+              <img
+                className={styles.tutorialFirstImage}
+                src="https://res.cloudinary.com/dy7myxpvn/image/upload/v1678162365/elizohkogh2ancnodf6c.gif"
+                alt=""
+              />
+            </div>
           </article>
           <article>
             <h3>Sube imágenes, los productos se hacen solos</h3>
@@ -65,6 +72,12 @@ export const MyHome = () => {
               Incluso si no tienes imágenes podrías empezar con frases. Añade
               tus frases insignia y tu seguidores siempre te recordarán
             </p>
+            <div className={styles.tutorialImageContainer}>
+              <img
+                src="https://res.cloudinary.com/dy7myxpvn/image/upload/v1678162366/acm5okunl2fg3biphewd.gif"
+                alt=""
+              />
+            </div>
           </article>
         </div>
       </section>

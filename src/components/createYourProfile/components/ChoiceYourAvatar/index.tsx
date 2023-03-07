@@ -29,7 +29,11 @@ export const ChoiceYourAvatar: FC<ChoiceYourAvatarProps> = ({
               }`}
               key={effect}
             >
-              <img src={src} alt={`image with ${effect}`} />
+              <img
+                className={styles.styledAvatarImage}
+                src={src}
+                alt={`image with ${effect}`}
+              />
             </div>
           )
         })}

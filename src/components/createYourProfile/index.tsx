@@ -1,7 +1,7 @@
 import { useProfileImage, useUploadImage } from '@/shared/hooks'
 import { useCreateProfileContext } from '@/shared/providers'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ImageUploading from 'react-images-uploading'
 import {
   ChoiceYourAvatar,
@@ -9,6 +9,8 @@ import {
   ProfileInformation,
 } from './components'
 import styles from './CreateProfile.module.css'
+import { Toaster, toast } from 'sonner'
+import { ThreeDots } from 'react-loader-spinner'
 
 export const CreateProfile = () => {
   const { push } = useRouter()
@@ -17,6 +19,8 @@ export const CreateProfile = () => {
   const [userInfoIsMissing, setUserInfoIsMissing] = useState(false)
   const { profileImage, userInformationCompleted, saveUserData } =
     useCreateProfileContext()
+
+  const loaded = useRef<any>()
 
   useEffect(() => {
     if (userInfoIsMissing && userInformationCompleted) {
@@ -27,6 +31,20 @@ export const CreateProfile = () => {
   useEffect(() => {
     if (src) {
       profileImage.set(src)
+
+      toast.custom((id) => {
+        loaded.current = id
+        return (
+          <ThreeDots
+            height="80"
+            width="80"
+            radius="9"
+            color="var(--fe-colors-primary)"
+            ariaLabel="three-dots-loading"
+            visible={true}
+          />
+        )
+      })
     }
   }, [src])
 
@@ -52,6 +70,7 @@ export const CreateProfile = () => {
                 dragProps,
                 onImageUpload,
                 src,
+                loaded,
               }}
             />
           )}
